@@ -8,6 +8,9 @@ html, body {
 	padding: 50px 0;
 }
 
+.pad-section1 {
+	padding: 200px 0;
+}
 .pad-section img {
 	width: 60%;
 }
@@ -74,7 +77,34 @@ html, body {
 #section4 .panel {
 	opacity: 0.85;
 }
-
+#services-section1{
+/* background-color: #E74C3C; */
+	color: #333;
+}
+#list-prices{
+	
+	font-family:"Arapey",serif;
+	color: #003;
+	font-weight:300;
+	
+}
+#list-prices p{
+	text-align:center;
+}
+#list-prices p a{
+	text-decoration:none;
+}
+#list-prices p a:hover, .text-link:hover {
+    color: #003;
+}
+.text-link{
+	text-decoration:none;
+	border-bottom: 1px solid #de0421;
+	
+}
+.table td { 
+     border-top: none !important; 
+ }
 footer {
 	padding: 20px 0;
 }
