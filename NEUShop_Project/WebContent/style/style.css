@@ -87,3 +87,31 @@ footer .glyphicon {
 footer .glyphicon:hover {
 	color: #306d9f;
 }
+
+.subpagetitle {
+	font-family: Raleway;
+	font-size: 30px;
+	font-weight: 400
+}
+
+.whyneu {
+	color: #fff;
+	font-size: 22px;
+	font-weight: bold;
+	text-align: left;
+	font-family: sans-serif;
+}
+
+.carousel-caption {
+	margin-bottom: 100px;
+	text-align: left;
+	margin-left: 0px;
+}
+
+.carousel-caption h1 {
+	font-size: 50px;
+}
+
+.carousel-caption p {
+	font-size: 20px;
+}
