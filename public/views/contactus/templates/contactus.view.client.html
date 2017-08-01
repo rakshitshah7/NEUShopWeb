@@ -2,6 +2,7 @@
     <br><br>
     <div class="container">
 
+
         <form class="well form-horizontal" id="contactForm" name="contactForm"  ng-submit="model.submit(contactForm)" novalidate>
             <fieldset>
 
@@ -13,6 +14,7 @@
                 <div class="form-group">
                     <label class="col-md-4 control-label">First Name</label>
                     <div class="col-md-4 inputGroupContainer">
+
                         <div class="input-group" ng-class="{ 'has-error' : contactForm.firstname.$invalid && !contactForm.firstname.$pristine }">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
                             <input  ng-model="model.firstname" name="firstname" placeholder="First Name" class="form-control"  type="text" required>
@@ -35,12 +37,14 @@
                     <div class="col-md-4 inputGroupContainer">
                         <p ng-show="contactForm.lastname.$invalid && !contactForm.lastname.$pristine" class="help-block">Your Last name is required.</p>
                     </div>
+
                 </div>
 
                 <!-- Text input-->
                 <div class="form-group">
                     <label class="col-md-4 control-label">E-Mail</label>
                     <div class="col-md-4 inputGroupContainer">
+
                         <div class="input-group" ng-class="{ 'has-error' : contactForm.email.$invalid && !contactForm.emaiil.$pristine }">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
                             <input  ng-model="model.email" name="email" placeholder="E-mail" class="form-control"  type="email">
@@ -49,6 +53,7 @@
                     <div class="col-md-4 inputGroupContainer">
                         <p ng-show="contactForm.email.$invalid && !contactForm.email.$pristine" class="help-block">Enter valid E-mail.</p>
                     </div>
+
                 </div>
 
 
@@ -186,7 +191,6 @@
                         <p ng-show="contactForm.message.$invalid && !contactForm.message.$pristine" class="help-block">Your Message is required.</p>
                     </div>
                 </div>
-
                 <!-- Button -->
                 <div class="form-group">
                     <label class="col-md-4 control-label"></label>
