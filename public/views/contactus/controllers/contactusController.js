@@ -5,12 +5,27 @@
 
         function contactusController($location) {
             var vm = this;
+            vm.submit = submit;
 
             function init() {
-                console.log("In contactusController")
+                vm.firstname = "";
+                console.log("In contactusController");
             }
 
             init();
+
+            function submit(form) {
+
+                if(!form.$valid)
+                {
+                    alert("Please complete the form!");
+                }
+                else
+                {
+                    alert("Thanks for completing the form");
+                    document.getElementById("contactForm").reset();
+                }
+            }
         }
 
     }
