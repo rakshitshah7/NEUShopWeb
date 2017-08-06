@@ -8,7 +8,6 @@
             vm.submit = submit;
 
             function init() {
-                vm.firstname = "";
                 console.log("In userregistrationController");
             }
 

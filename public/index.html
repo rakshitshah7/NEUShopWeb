@@ -4,6 +4,7 @@
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"/>
     <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
+    <link rel='stylesheet prefetch' href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,500,700,900|RobotoDraft:400,100,300,500,700,900'>
     <link href="stylesheets/style.css" rel="stylesheet" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta charset="UTF-8">
@@ -25,12 +26,13 @@
         <div class="collapse navbar-collapse" id="navbar-collapse-main">
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="#/home">Home</a></li>
-                <li><a href="#/userreg">User Registration</a></li>
+                <!--<li><a href="#/userreg">User Registration</a></li>-->
                 <li><a href="#/aboutus">About</a></li>
                 <li><a href="#/services">Services</a></li>
                 <li><a href="#/information">Information</a></li>
                 <li><a href="#/contactus">Contact</a></li>
-                <li><a href="#/user">User</a></li>
+                <li ng-if="$root.currentUser === null" ><a href="#/user">Log In/Register</a></li>
+                <li ng-if="$root.currentUser !== null" ><a href="#/logout">Log Out</a></li>
             </ul>
         </div>
         <!-- /.navbar-collapse -->
@@ -70,4 +72,5 @@
 <script src="views/contactus/controllers/contactusController.js"></script>
 <script src="views/aboutus/controllers/aboutusController.js"></script>
 <script src="views/userregistration/controllers/userregistrationController.js"></script>
+<script src="views/user/controllers/logoutController.js"></script>
 </html>

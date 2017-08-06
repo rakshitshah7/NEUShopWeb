@@ -8,7 +8,10 @@
             .when("/home", {
                 templateUrl: 'views/homepage/templates/homepage.view.client.html',
                 controller: 'homepageController',
-                controllerAs: 'model'
+                controllerAs: 'model',
+                resolve: {
+                    loggedIn: checkLogged
+                }
             })
             .when("/userreg", {
                 templateUrl: 'views/userregistration/templates/userregistration.view.client.html',
@@ -26,6 +29,11 @@
             .when("/login", {
                 templateUrl: "views/user/templates/login.view.client.html",
                 controller: "loginController",
+                controllerAs: "model"
+            })
+            .when("/logout", {
+                templateUrl: "views/user/templates/logout.view.client.html",
+                controller: "logoutController",
                 controllerAs: "model"
             })
             .when("/aboutus", {
@@ -94,4 +102,5 @@
             );
 
     };
+
 })();

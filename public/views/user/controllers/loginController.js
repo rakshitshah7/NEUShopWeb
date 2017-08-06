@@ -11,6 +11,14 @@
             console.log("In loginController")
         }
 
+        $('.toggle').on('click', function() {
+            $('.containerUser').stop().addClass('active');
+        });
+
+        $('.close').on('click', function() {
+            $('.containerUser').stop().removeClass('active');
+        });
+
         init();
 
         function login(username, password) {
@@ -32,6 +40,32 @@
                         function (error) {
                             vm.error = "Invalid Credentials"
                         });
+            }
+        }
+
+        function submit(form) {
+
+            if(!form.$valid)
+            {
+                alert("Please complete the form!");
+            }
+            else
+            {
+                UserService
+                    .register(form)
+                    .then(function (response) {
+                            var reg = response.data;
+                            if (reg) {
+                                console.log("Successful");
+                            } else {
+                                console.log("Unsuccesful reg");
+                            }
+                        },
+                        function (error) {
+
+                        });
+                alert("Thanks for completing the registration");
+                document.getElementById("userform").reset();
             }
         }
     }
