@@ -51,6 +51,11 @@
                 controller: 'informationController',
                 controllerAs: 'model'
             })
+            .when("/product", {
+                templateUrl: 'views/product/templates/product.view.client.html',
+                controller: 'productController',
+                controllerAs: 'model'
+            })
             .when("/services", {
                 templateUrl: 'views/services/templates/services.view.client.html',
                 controller: 'servicesController',

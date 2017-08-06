@@ -9,6 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta charset="UTF-8">
     <title>Project</title>
+
 </head>
 <body>
 <nav class="navbar navbar-default" role="navigation" style="margin-bottom:0px">
@@ -25,14 +26,15 @@
         </div>
         <div class="collapse navbar-collapse" id="navbar-collapse-main">
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="#/home">Home</a></li>
+                <li><a href="#!home">Home</a></li>
                 <!--<li><a href="#/userreg">User Registration</a></li>-->
-                <li><a href="#/aboutus">About</a></li>
-                <li><a href="#/services">Services</a></li>
-                <li><a href="#/information">Information</a></li>
-                <li><a href="#/contactus">Contact</a></li>
-                <li ng-if="$root.currentUser === null" ><a href="#/user">Log In/Register</a></li>
-                <li ng-if="$root.currentUser !== null" ><a href="#/logout">Log Out</a></li>
+                <li><a href="#!aboutus">About</a></li>
+                <li><a href="#!services">Services</a></li>
+                <li><a href="#!information">Information</a></li>
+                <li><a href="#!contactus">Contact</a></li>
+                <li><a href="#!product">Product</a></li>
+                <li ng-if="$root.currentUser === null" ><a href="#!user">Log In/Register</a></li>
+                <li ng-if="$root.currentUser !== null" ><a href="#!logout">Log Out</a></li>
             </ul>
         </div>
         <!-- /.navbar-collapse -->
@@ -59,11 +61,18 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular-route.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-route.min.js"></script>
 <script src="app.js"></script>
 <script src="config.js"></script>
+
+<!--component-->
+<script src="views/product/component/productcardComponent.js"></script>
+
+<!--services-->
 <script src="services/user.service.client.js"></script>
+
+<!--controller-->
 <script src="views/user/controllers/loginController.js"></script>
 <script src="views/user/controllers/userController.js"></script>
 <script src="views/homepage/controllers/homepageController.js"></script>
@@ -73,4 +82,5 @@
 <script src="views/aboutus/controllers/aboutusController.js"></script>
 <script src="views/userregistration/controllers/userregistrationController.js"></script>
 <script src="views/user/controllers/logoutController.js"></script>
+<script src="views/product/controllers/productController.js"></script>
 </html>
