@@ -6,6 +6,7 @@
     function loginController($location, UserService) {
         var vm = this;
         vm.login = login;
+        vm.submit = submit;
 
         function init() {
             console.log("In loginController")
