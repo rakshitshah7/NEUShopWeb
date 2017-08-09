@@ -51,9 +51,14 @@
                 alert("Please complete the form!");
             }
             else
-            {
+            { var user = {
+                firstName: form.firstName.$modelValue,
+                lastName: form.lastName.$modelValue,
+                password: form.password.$modelValue,
+                username: form.username.$modelValue,
+                };
                 UserService
-                    .register(form)
+                    .register(user)
                     .then(function (response) {
                             var reg = response.data;
                             if (reg) {
