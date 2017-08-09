@@ -56,7 +56,7 @@
                 lastName: form.lastName.$modelValue,
                 password: form.password.$modelValue,
                 username: form.username.$modelValue,
-                }
+                };
                 UserService
                     .register(user)
                     .then(function (response) {
