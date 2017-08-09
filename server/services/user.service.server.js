@@ -4,6 +4,8 @@ var bcrypt = require("bcrypt-nodejs");
 var FacebookStrategy = require('passport-facebook').Strategy;
 var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 
+//Getting the Mongoose db userModel from the user.Model
+var User = require("../Model/user.model.server");
 module.exports = function (app) {
 
     //var userModelProject = models.userModelProject;
@@ -125,21 +127,30 @@ module.exports = function (app) {
     }
 
     function register(req, res) {
-        var username = req.body.username;
-        var password = req.body.password;
+        console.log("In register")
+        var username = req.body.username.$viewValue;
+        var password = req.body.password.$viewValue;
+        var users = req.body;
+        console.log(users);
 
-/*
-        userModelProject
+        // User
+        //     .createNewUser(users)
+        //     .then(function (user) {
+        //     res.json(user);
+        // })
+
+        User
             .findUserByUsername(username)
             .then(
                 function (user) {
                     if (user) {
+                        console.log("Username exists error.")
                         res.status(400).send("Username already in use");
                         return;
                     } else {
-                        req.body.password = bcrypt.hashSync(req.body.password);
-                        return userModelProject
-                            .createUser(req.body);
+                        req.body.password.$viewValue = bcrypt.hashSync(req.body.password.$viewValue);
+                        return User
+                            .createNewUser(users);
                     }
                 },
                 function (err) {
@@ -162,8 +173,8 @@ module.exports = function (app) {
                     res.status(400).send(err);
                 }
             )
-*/
-        res.send(200);
+
+        // res.send(200);
         console.log("In register - /api/project/register");
     }
 
