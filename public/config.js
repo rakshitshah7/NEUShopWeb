@@ -56,6 +56,14 @@
                 controller: 'productController',
                 controllerAs: 'model'
             })
+            .when("/checkoutcart", {
+                templateUrl: 'views/checkoutcart/templates/checkoutcart.view.client.html',
+                controller: 'checkoutcartController',
+                controllerAs: 'model',
+                resolve: {
+                    loggedIn: checkLogged
+                }
+            })
             .when("/services", {
                 templateUrl: 'views/services/templates/services.view.client.html',
                 controller: 'servicesController',
