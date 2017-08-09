@@ -5,10 +5,10 @@ var FacebookStrategy = require('passport-facebook').Strategy;
 var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 
 //Getting the Mongoose db userModel from the user.Model
-var User = require("../Model/user.model.server");
-module.exports = function (app) {
 
-    //var userModelProject = models.userModelProject;
+module.exports = function (app, models) {
+
+    var userModelProject = models.userModelProject;
 
     app.post("/api/project/user", createUser);
     app.post("/api/project/login", passport.authenticate('project'), projectLogin);
@@ -139,7 +139,7 @@ module.exports = function (app) {
         //     res.json(user);
         // })
 
-        User
+        userModelProject
             .findUserByUsername(username)
             .then(
                 function (user) {
@@ -149,7 +149,7 @@ module.exports = function (app) {
                         return;
                     } else {
                         req.body.password.$viewValue = bcrypt.hashSync(req.body.password.$viewValue);
-                        return User
+                        return userModelProject
                             .createNewUser(users);
                     }
                 },
