@@ -9,7 +9,7 @@
             vm.favList = [];
             vm.orderList = [];
             vm.getUserOrders = getUserOrders;
-            vm.cancelOrder = cancelOrders;
+            vm.cancelOrder = cancelOrder;
 
             function getUserOrders() {
 
