@@ -2,7 +2,7 @@
 
     <div class="top">
         <ul>
-            <li><a href="#"><i class="fa fa-star-o" aria-hidden="true"></i></a></li>
+            <li><a ng-click="$ctrl.togglefav($ctrl.data)"><i class="fa fa-star-o" aria-hidden="true"></i></a></li>
             <li><span class="titleProduct">{{$ctrl.data.productName}}</span></li>
             <li><a ng-click="$ctrl.addtocart()"><i class="fa fa-shopping-basket" aria-hidden="true"></i>
             </a></li>
