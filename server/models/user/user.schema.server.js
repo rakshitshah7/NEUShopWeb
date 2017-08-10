@@ -5,7 +5,7 @@ module.exports = function () {
         lastname: String,
         username: String,
         password: String
-    }, {collection: "user"});
+    }, {collection: "client.user"});
 
     return userSchema;
 };

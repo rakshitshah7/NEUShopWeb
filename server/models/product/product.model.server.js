@@ -1,16 +1,16 @@
 module.exports = function() {
-    console.log("Hello from Mongoose!!");
+
     var db = require('./database');
     var mongoose = require("mongoose");
     var q = require("q");
     //Getting the schema
-    var userSchema = require("./user.schema.server.js")();
+    var userSchema = require("./product.schema.server.js")();
     //Creating the model of the mongodb
-    var User = mongoose.model("ClientUser", userSchema);
+    var Product = mongoose.model("product", productSchema);
 
     var api = {
-        createUser : createUser,
-        findUserByUsername: findUserByUsername,
+        createProduct : createProduct,
+        findProductByProductId: findProductByProductId,
         findUserByCredentials: findUserByCredentials,
         findUserById: findUserById,
         deleteUser : deleteUser
@@ -22,23 +22,20 @@ module.exports = function() {
 
 
 
-    function createUser(user) {
-        return User.create(user);
+    function createProduct(product) {
+        return Product.create(product);
     }
 
-    function findUserById(userId) {
-        return User.findById(userId);
+    function findUserById(productId) {
+        return Product.findById(productId);
     }
 
-    function findUserByUsername(username) {
-        return User.findOne({username: username});
+    function findProductByProductId(productId) {
+        return Product.findOne({productId: productId});
     }
 
-    function findUserByCredentials(username, password) {
-        return User.findOne({username: username, password: password});
-    }
 
-    function updateUser(userId, user) {
+    function updateproduct(productId, user) {
         delete user._id;
         return User
             .update(
@@ -48,7 +45,7 @@ module.exports = function() {
     }
 
     function deleteUser(userId) {
-        return User.remove({_id: userId});
+        return Product.remove({_id: userId});
     }
 
 
