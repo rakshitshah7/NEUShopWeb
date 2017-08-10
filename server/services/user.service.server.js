@@ -71,7 +71,7 @@ module.exports = function (app, models) {
     passport.deserializeUser(deserializeUser);
 
     function localStrategy(username, password, done) {
-       /* userModelProject
+       userModelProject
             .findUserByUsername(username)
             .then(
                 function (user) {
@@ -86,8 +86,8 @@ module.exports = function (app, models) {
                         done(err);
                     }
                 }
-            );*/
-        done(null,username);
+            );
+
     }
 
     function serializeUser(user, done) {
@@ -95,7 +95,7 @@ module.exports = function (app, models) {
     }
 
     function deserializeUser(user, done) {
-       /* userModelProject
+       userModelProject
             .findUserById(user._id)
             .then(
                 function (user) {
@@ -104,8 +104,8 @@ module.exports = function (app, models) {
                 function (err) {
                     done(err, null);
                 }
-            );*/
-        done(null,user);
+            );
+
     }
 
     function loggedIn(req, res) {
@@ -127,30 +127,25 @@ module.exports = function (app, models) {
     }
 
     function register(req, res) {
-        console.log("In register")
-        var username = req.body.username.$viewValue;
-        var password = req.body.password.$viewValue;
+        console.log("In register");
+        var username = req.body.username;
+        // var password = req.body.password;
         var users = req.body;
-        console.log(users);
+        // console.log(users);
 
-        // User
-        //     .createNewUser(users)
-        //     .then(function (user) {
-        //     res.json(user);
-        // })
 
         userModelProject
             .findUserByUsername(username)
             .then(
                 function (user) {
                     if (user) {
-                        console.log("Username exists error.")
+                        // console.log("Username exists error.")
                         res.status(400).send("Username already in use");
                         return;
                     } else {
-                        req.body.password.$viewValue = bcrypt.hashSync(req.body.password.$viewValue);
+                        req.body.password = bcrypt.hashSync(req.body.password);
                         return userModelProject
-                            .createNewUser(users);
+                            .createUser(users);
                     }
                 },
                 function (err) {
@@ -175,7 +170,7 @@ module.exports = function (app, models) {
             )
 
         // res.send(200);
-        console.log("In register - /api/project/register");
+        // console.log("In register - /api/project/register");
     }
 
 
@@ -241,7 +236,7 @@ module.exports = function (app, models) {
 
     function deleteUser(req, res) {
         var userId = req.params.userId;
-        /*userModelProject
+        userModelProject
             .deleteUser(userId)
             .then(
                 function (stats) {
@@ -250,14 +245,14 @@ module.exports = function (app, models) {
                 function (error) {
                     res.statusCode(404).send(error);
                 }
-            );*/
-        res.send(200);
+            );
+
     }
 
     function updateUser(req, res) {
         var userId = req.params.userId;
         var user = req.body;
-        /*userModelProject
+        userModelProject
             .updateUser(userId, user)
             .then(
                 function (stats) {
@@ -266,13 +261,13 @@ module.exports = function (app, models) {
                 function (error) {
                     res.send(error);
                 }
-            );*/
-        res.send(200);
+            );
+
     }
 
     function createUser(req, res) {
         var user = req.body;
-        /*userModelProject
+        userModelProject
             .createUser(user)
             .then(
                 function (user) {
@@ -281,13 +276,13 @@ module.exports = function (app, models) {
                 function (error) {
                     res.statusCode(400).send(error);
                 }
-            )*/
-        res.send(200);
+            )
+
     }
 
     function findUserById(req, res) {
         var userId = req.params.userId;
-        /*userModelProject
+        userModelProject
             .findUserById(userId)
             .then(
                 function (user) {
@@ -296,23 +291,23 @@ module.exports = function (app, models) {
                 function (error) {
                     res.statusCode(404).send(null);
                 }
-            )*/
-        res.send(200);
+            )
+
     }
 
     function getUser(req, res) {
         var username = req.query['username'];
         var password = req.query['password'];
-        /*if (username && password) {
+        if (username && password) {
             findUserByCredentials(username, password, res);
         }  else {
             res.send(null);
-        }*/
+        }
         res.send(200);
     }
 
     function findUserByCredentials(username, password, res) {
-        /*userModelProject
+        userModelProject
             .findUserByCredentials(username, password)
             .then(
                 function (user) {
@@ -321,8 +316,19 @@ module.exports = function (app, models) {
                 function () {
                     res.statusCode(404).send(null);
                 }
-            );*/
-        res.send(200);
-    }
+            );
 
+    }
+    function findUserByUsername(username, res) {
+        userModelProject
+            .findUserByUsername(username)
+            .then(
+                function (user) {
+                    res.json(user);
+                },
+                function () {
+                    res.statusCode(404).send(null);
+                }
+            );
+    }
 };
