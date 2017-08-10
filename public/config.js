@@ -54,7 +54,10 @@
             .when("/product", {
                 templateUrl: 'views/product/templates/product.view.client.html',
                 controller: 'productController',
-                controllerAs: 'model'
+                controllerAs: 'model',
+                resolve: {
+                    loggedIn: checkLogged
+                }
             })
             .when("/checkoutcart", {
                 templateUrl: 'views/checkoutcart/templates/checkoutcart.view.client.html',
