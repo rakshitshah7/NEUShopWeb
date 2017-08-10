@@ -1,6 +1,6 @@
 module.exports = function() {
     console.log("Hello from Mongoose!!");
-    // var db = require('./database');
+    var db = require('./database');
     var mongoose = require("mongoose");
     var q = require("q");
     //Getting the schema

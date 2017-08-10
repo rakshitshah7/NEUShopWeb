@@ -4,7 +4,7 @@ module.exports = function () {
     {   productID: String,
         productName: String,
         description: String,
-        img: [String],
+        img: { data: Buffer, contentType: String },
         edition: String,
         color:String,
         styleNo:String,
