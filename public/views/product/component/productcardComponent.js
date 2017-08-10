@@ -18,9 +18,9 @@
                             return index;
                         }
                     });
-                    if (productIndex > -1 && $rootScope.favList.length !=0 ) {
+                    if (productIndex.length !=0 && $rootScope.favList.length !=0 ) {
                         toaster.pop('info', "Information", "Removed from favourite list");
-                        $rootScope.favList.splice(productIndex, 1);
+                        $rootScope.favList.splice(productIndex[0], 1);
                     }
                     else {
                         toaster.pop('info', "Information", "Item Added to your favourites!!");
