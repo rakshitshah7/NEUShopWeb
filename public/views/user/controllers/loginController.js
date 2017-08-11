@@ -3,7 +3,7 @@
         .module("project")
         .controller("loginController", loginController)
 
-    function loginController($location, UserService) {
+    function loginController($location, UserService, toaster, $rootScope) {
         var vm = this;
         vm.login = login;
         vm.submit = submit;
@@ -24,9 +24,10 @@
 
         function login(username, password) {
             if (username === "" || username == null) {
-                vm.error = "Username cannot be blank !"
+                vm.error = "Username cannot be blank !";
+                toaster.pop('error', "Error", "Username cannot be blank !");
             } else if (password === "" || password == null) {
-                vm.error = "Password cannot be blank !"
+                toaster.pop('error', "Error", "Password cannot be blank !");
             } else {
                 UserService
                     .login(username, password)
@@ -34,12 +35,15 @@
                             var user = response.data;
                             if (user) {
                                 $location.url("/user");
+                                toaster.pop('info', "Welcome", "Welcome to Northeastern!");
                             } else {
                                 vm.error = "Invalid Credentials";
+                                toaster.pop('error', "Error", "Please check your credentials!");
                             }
                         },
                         function (error) {
-                            vm.error = "Invalid Credentials"
+                            vm.error = "Invalid Credentials";
+                            toaster.pop('error', "Error", "Please check your credentials!");
                         });
             }
         }
@@ -57,21 +61,35 @@
                 password: form.password.$modelValue,
                 username: form.username.$modelValue,
                 };
+            try {
                 UserService
                     .register(user)
                     .then(function (response) {
                             var reg = response.data;
                             if (reg) {
                                 console.log("Successful");
+                                toaster.pop('info', "Gracis", "Successfully Registered! Please Log In to order :)");
                             } else {
                                 console.log("Unsuccesful reg");
+                                toaster.pop('error', "Error", "Error in registration!");
                             }
                         },
                         function (error) {
+                            if (error.status === 400) {
+                                toaster.pop('error', "Registration Error", "Username already registered!");
+                            }
+                            else {
+                                toaster.pop('error', "Registration Error", "Error in registration!");
+                            }
 
                         });
-                alert("Thanks for completing the registration");
+            }
+            catch(e)
+            {
+                console.log(e.message);
+            }
                 document.getElementById("userform").reset();
+                $rootScope.currentUser = null;
             }
         }
     }
