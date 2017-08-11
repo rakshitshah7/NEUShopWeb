@@ -8,7 +8,7 @@
             };
 
             ctrl.togglefav = function (product) {
-                if ($rootScope != null) {
+                if ($rootScope.currentUser != null) {
                     if ($rootScope.favList === undefined) {
                         $rootScope.favList = [];
                     }
