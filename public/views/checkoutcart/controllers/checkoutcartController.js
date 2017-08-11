@@ -3,13 +3,14 @@
             .module("project")
             .controller("checkoutcartController", checkoutcartController);
 
-        function checkoutcartController($location, $rootScope, toaster) {
+        function checkoutcartController($location, $rootScope, toaster, OrderService) {
             var vm = this;
             vm.total = 0;
             vm.product = $rootScope.checkoutList;
             vm.getTotal = getTotal;
             vm.deletefromCart = deletefromCart;
             vm.onqtyChange = onqtyChange;
+            vm.orderProducts = orderProducts;
 
             function init() {
                 console.log("In checkoutcartController")
@@ -48,6 +49,44 @@
                     }
                 });
                 vm.getTotal();
+            }
+
+            function orderProducts()
+            {
+                var orderObj = {
+                    orderDateTime: new Date(),
+                    product: $rootScope.checkoutList,
+                    user: $rootScope.currentUser
+                }
+
+                try {
+                    OrderService
+                        .saveUserOrder(orderObj)
+                        .then(function (response) {
+                                var reg = response.data;
+                                if (reg) {
+                                    console.log("Successful");
+                                    toaster.pop('info', "Gracis", "Successfully Ordered! :)");
+                                    $rootScope.checkoutList = [];
+                                } else {
+                                    console.log("Unsuccesful");
+                                    toaster.pop('error', "Error", "Error in Ordering! Please Try Again");
+                                }
+                            },
+                            function (error) {
+                                if (error.status === 400) {
+                                    toaster.pop('error', "Error", "Error in Ordering! Please Try Again");
+                                }
+                                else {
+                                    toaster.pop('error', "Error", "Error in Ordering! Please Try Again");
+                                }
+
+                            });
+                }
+                catch(e)
+                {
+                    console.log(e.message);
+                }
             }
         }
 

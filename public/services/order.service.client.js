@@ -20,8 +20,8 @@
             return $http.post("/api/project/cancelOrder", order);
         }
 
-        function saveUserOrder(order,user) {
-            return $http.post("/api/project/saveUserOrder", order,user);
+        function saveUserOrder(order) {
+            return $http.post("/api/project/saveUserOrder", order);
         }
 
     }

@@ -29,7 +29,10 @@
             .when("/login", {
                 templateUrl: "views/user/templates/login.view.client.html",
                 controller: "loginController",
-                controllerAs: "model"
+                controllerAs: "model",
+                resolve: {
+                    loggedIn: checkLogged
+                }
             })
             .when("/logout", {
                 templateUrl: "views/user/templates/logout.view.client.html",
