@@ -53,18 +53,11 @@
 
             function orderProducts()
             {
-                var productString ="";
-                if($rootScope.checkoutList)
-                {
-                    for(var i=0; i< $rootScope.checkoutList.length;i++)
-                    {
-                        productString = productString + $rootScope.checkoutList[i].productID + ":" + $rootScope.checkoutList[i].qty + ",";
-                    }
-                }
                 var orderObj = {
                     orderDateTime: new Date(),
-                    product: productString,
-                    user: $rootScope.currentUser._id
+                    product: $rootScope.checkoutList,
+                    user: $rootScope.currentUser._id,
+                    total: vm.total
                 }
 
                 try {
