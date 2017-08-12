@@ -69,6 +69,16 @@
                             if (reg) {
                                 console.log("Successful");
                                 toaster.pop('info', "Gracis", "Successfully Registered! Please Log In to order :)");
+                                UserService
+                                    .logout()
+                                    .then(
+                                        function (response) {
+                                            $rootScope.currentUser = null
+                                        },
+                                        function () {
+                                            $rootScope.currentUser = null
+                                        }
+                                    );
                             } else {
                                 console.log("Unsuccesful reg");
                                 toaster.pop('error', "Error", "Error in registration!");
@@ -89,7 +99,7 @@
                 console.log(e.message);
             }
                 document.getElementById("userform").reset();
-                $rootScope.currentUser = null;
+
             }
         }
     }
