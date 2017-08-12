@@ -56,6 +56,7 @@
                     <span>You havent order yet, Your first order is one click away!</span>
                     <a href="#!product" class="btn btn-default">Shop Now!</a>
                 </div>
+                <order-card ng-repeat="order in model.orderList" data="order"></order-card>
             </div>
             <div class="tab-pane fade in" id="tab2">
                 <h3>This is tab 2</h3>
