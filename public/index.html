@@ -7,6 +7,7 @@
     <link rel='stylesheet prefetch' href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,500,700,900|RobotoDraft:400,100,300,500,700,900'>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/angularjs-toaster/1.1.0/toaster.min.css" rel="stylesheet" />
     <link href="stylesheets/style.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.min.css" rel="stylesheet"/>
 
     <!-- Angular Material style sheet -->
     <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.css">
@@ -16,6 +17,9 @@
     <title>Project</title>
 </head>
 <body>
+
+
+
 <nav class="navbar navbar-default" role="navigation" style="margin-bottom:0px">
     <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
@@ -35,6 +39,8 @@
                 <li><a href="#!aboutus">About</a></li>
                 <li><a href="#!services">Services</a></li>
                 <li><a href="#!information">Information</a></li>
+                <li><a href="#!assessment">Assessment</a></li>
+                <li><a href="#!appointment">Appointment</a></li>
                 <li><a href="#!contactus">Contact</a></li>
                 <li><a href="#!product">Product</a></li>
                 <li><a href="#!checkoutcart">Checkout</a></li>
@@ -51,10 +57,22 @@
 <toaster-container toaster-options="{'position-class': 'toast-bottom-full-width', 'time-out': 1000}"></toaster-container>
 <!-- footer -->
 <footer>
-    <hr />
-    <div class="container">
-        <p class="text-right">Copyright &copy; Northeastern Company 2017</p>
-    </div>
+    <md-toolbar class="">
+
+        <div class="md-toolbar-tools">
+            <p class="text-right">Copyright &copy; Northeastern Company 2017</p>
+            <span flex></span>
+            <md-button class="md-fab" ng-href="#!faq" aria-label="fav">
+                FAQs
+            </md-button>
+            <ul class="social-network social-circle pull-right" style="margin-bottom:3%">
+                <li><br><br><a href="https://www.facebook.com/northeastern" class="icoFacebook" title="Facebook"><i class="fa fa-facebook"></i></a></li>
+                <li><a href="https://twitter.com/northeastern" class="icoTwitter" title="Twitter"><i class="fa fa-twitter"></i></a></li>
+                <li><a href="https://plus.google.com/100884222241386918943" class="icoGoogle" title="Google +"><i class="fa fa-google-plus"></i></a></li>
+                <li><a href="https://www.linkedin.com/edu/northeastern-university-18506" class="icoLinkedin" title="Linkedin"><i class="fa fa-linkedin"></i></a></li>
+            </ul>     </div>
+
+    </md-toolbar>
 </footer>
 <!-- /footer -->
 </body>
@@ -62,6 +80,7 @@
         src="https://code.jquery.com/jquery-2.2.4.min.js"
         integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
         crossorigin="anonymous"></script>
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -72,6 +91,9 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/angularjs-toaster/1.1.0/toaster.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-aria.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-messages.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>
 
 <!-- Angular Material Library -->
 <script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.js"></script>
@@ -101,6 +123,9 @@
 <script src="views/user/controllers/logoutController.js"></script>
 <script src="views/product/controllers/productController.js"></script>
 <script src="views/checkoutcart/controllers/checkoutcartController.js"></script>
+<script src="views/appointment/controllers/appointmentController.js"></script>
+<script src="views/assessment/controllers/assessmentController.js"></script>
+<script src="views/faq/controllers/faqController.js"></script>
 </html>
 <style>
 .navbar-brand {

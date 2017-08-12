@@ -50,6 +50,30 @@
                     loggedIn: checkLogged
                 }
             })
+            .when("/assessment", {
+                templateUrl: 'views/assessment/templates/assessment.view.client.html',
+                controller: 'assessmentController',
+                controllerAs: 'model',
+                resolve: {
+                    loggedIn: checkLogged
+                }
+            })
+            .when("/appointment", {
+                templateUrl: 'views/appointment/templates/appointment.view.client.html',
+                controller: 'appointmentController',
+                controllerAs: 'model',
+                resolve: {
+                    loggedIn: checkLogged
+                }
+            })
+            .when("/faq", {
+                templateUrl: 'views/faq/templates/faq.view.client.html',
+                controller: 'faqController',
+                controllerAs: 'model',
+                resolve: {
+                    loggedIn: checkLogged
+                }
+            })
             .when("/contactus", {
                 templateUrl: 'views/contactus/templates/contactus.view.client.html',
                 controller: 'contactusController',
