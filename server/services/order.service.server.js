@@ -4,16 +4,16 @@ module.exports = function (app, models) {
     var orderModelProject = models.orderModelProject;
 
 
-    app.get('/api/project/userOrders/:userId', getUserOrders);
-    app.post("/api/project/saveUserOrder/:userId/product/:productId",saveUserOrder);
-    app.post("/api/project/cancelOrder/:orderId", cancelUserOrder);
+    app.get('/api/project/userOrders', getUserOrders);
+    app.post("/api/project/saveUserOrder",saveUserOrder);
+    app.post("/api/project/cancelOrder", cancelUserOrder);
 
 
 
     function saveUserOrder(req,res){
-        // var product = req.body;
+        var order = req.body;
         orderModelProject
-            .saveUserOrder(req.params.userId,req.params.productId)
+            .saveUserOrder(order)
             .then(function(order) {
                 res.json(order);
             }, function (err) {
@@ -33,7 +33,7 @@ module.exports = function (app, models) {
     }
 
     function getUserOrders(req, res) {
-        var userId = req.params.userId;
+        var userId = req.user;
         // var product = req.id;
         orderModelProject
             .getUserOrders(userId)

@@ -19,31 +19,41 @@ module.exports = function() {
     return api;
 
 
-function createOrder(userId){
-    var user = {user:userId}
-    console.log(user);
-    return Order.create(user);
+function createOrder(order){
+    // var user = {user:userId}
+    console.log(order);
+    return Order.create(order);
 }
 
-    function saveUserOrder(userId,productId) {
-        var splitproduct = productId.split(",")
+    function saveUserOrder(order) {
+        // var splitproduct = productId.split(",")
 
         var deferred = q.defer();
+        var orderdetails ={
+            orderDateTime : order.orderDateTime,
+            total : order.total,
+            user : order.user
 
-        createOrder(userId)
-            .then(function (order) {
+        }
+
+        createOrder(orderdetails)
+            .then(function (orderdetail) {
                 Order
-                    .findById(order._id, function(err,order){
+                    .findById(orderdetail._id, function(err,orderdetail){
                         if(err) {
 
                             deferred.abort(err);
 
                         } else {
 
-                            for (var i = 0; i < splitproduct.length; i++) {
-                                order.products.push(splitproduct[i]);
+                            for (var i = 0; i < order.product.length; i++) {
+
+
+                                orderdetail.product.push(order.product[i]);
+                                orderdetail.qty.push(order.product[i].qty)
+
                             }
-                            order.save();
+                            orderdetail.save();
                             deferred.resolve(order);
                         }
             })
