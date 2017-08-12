@@ -23,25 +23,70 @@ module.exports = function() {
 
 
 
+function createOrder(userId){
+    var user = {user:userId}
+    console.log(user);
+    return Order.create(user);
+}
 
-    function getUserOrders(product) {
-        var order={
-            user : req.params.userId,
-            product : req.params.productId
-        }
+    function saveUserOrder(userId,productId) {
+        var splitproduct = productId.split(",")
+
+        var deferred = q.defer();
+        createOrder(userId)
+            .then(function (order) {
+                Order
+                    .findById(order._id, function(err,order){
+                        if(err) {
+                            deferred.abort(err);
+                        } else {
+
+                            for (var i = 0; i < splitproduct.length; i++) {
+
+                                order.products.push(splitproduct[i]);
 
 
-        return Order.create(order);
+                            }
+                            order.save();
+
+                            deferred.resolve(order);
+                        }
+            })
+    })
+        return deferred.promise;
     }
 
-    function cancelUserOrder(productId) {
 
-        return Order.findById(productId);
+    function getUserOrders(userId) {
+        var deferred = q.defer();
+            Order
+                .find({user:userId}, function (err, order) {
+                    if(err) {
+                        deferred.abort(err);
+                    } else
+                        {
+                            deferred.resolve(order);
+                        }
+               })
+    return deferred.promise;
     }
 
-    function saveUserOrder() {
-        r
+    function cancelUserOrder(orderId) {
+
+        var deferred = q.defer();
+        Order
+            .remove({_id: orderId}, function (err, order) {
+            if(err) {
+                deferred.abort(err);
+            } else {
+                deferred.resolve(order);
+            }
+        });
+        return deferred.promise;
     }
+    qw
+
+
 
 
 
