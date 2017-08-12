@@ -3,18 +3,18 @@
             .module("project")
             .controller("userController", userController);
 
-        function userController($location, $rootScope, OrderService, UserService) {
+        function userController($location, $rootScope, OrderService, UserService,$mdSidenav) {
             var vm = this;
-            vm.currentUser = {};
+            vm.currentUser = $rootScope.currentUser;
             vm.favList = [];
             vm.orderList = [];
             vm.getUserOrders = getUserOrders;
             vm.cancelOrder = cancelOrder;
 
             function getUserOrders() {
-
+                
                 OrderService
-                    .getUserOrders(currentUser)
+                    .getUserOrders(currentUser._id)
                     .then(function (response) {
                             vm.orderList = response.data;
                         },
@@ -57,6 +57,15 @@
             }
 
             init();
+
+
+            function buildToggler(componentId) {
+                return function() {
+                    $mdSidenav(componentId).toggle();
+                };
+            }
+            vm.toggleLeft = buildToggler('left');
+            vm.toggleRight = buildToggler('right');
         }
 
     }
