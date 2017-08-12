@@ -37,22 +37,34 @@
             .when("/logout", {
                 templateUrl: "views/user/templates/logout.view.client.html",
                 controller: "logoutController",
-                controllerAs: "model"
+                controllerAs: "model",
+                resolve: {
+                    loggedIn: checkLogged
+                }
             })
             .when("/aboutus", {
                 templateUrl: 'views/aboutus/templates/aboutus.view.client.html',
                 controller: 'aboutusController',
-                controllerAs: 'model'
+                controllerAs: 'model',
+                resolve: {
+                    loggedIn: checkLogged
+                }
             })
             .when("/contactus", {
                 templateUrl: 'views/contactus/templates/contactus.view.client.html',
                 controller: 'contactusController',
-                controllerAs: 'model'
+                controllerAs: 'model',
+                resolve: {
+                    loggedIn: checkLogged
+                }
             })
             .when("/information", {
                 templateUrl: 'views/information/templates/information.view.client.html',
                 controller: 'informationController',
-                controllerAs: 'model'
+                controllerAs: 'model',
+                resolve: {
+                    loggedIn: checkLogged
+                }
             })
             .when("/product", {
                 templateUrl: 'views/product/templates/product.view.client.html',
@@ -73,7 +85,10 @@
             .when("/services", {
                 templateUrl: 'views/services/templates/services.view.client.html',
                 controller: 'servicesController',
-                controllerAs: 'model'
+                controllerAs: 'model',
+                resolve: {
+                    loggedIn: checkLogged
+                }
             })
             .otherwise({redirectTo : '/home'});
     }

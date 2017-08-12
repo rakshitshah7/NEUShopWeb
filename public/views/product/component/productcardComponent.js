@@ -3,8 +3,36 @@
             var ctrl = this;
 
             ctrl.addtocart = function () {
-                toaster.pop('info', "Information", "Item Added to the cart!! Check Cart");
-                ctrl.addtoCart({product: ctrl.data});
+                var product = ctrl.data;
+                var productExists = $.grep( $rootScope.checkoutList, function( n, i ) {return n.productID == product.productID;});
+                if(productExists.length ===0)
+                {
+                    var productObj = {
+                        productID: product.productID,
+                        productName: product.productName,
+                        description: product.description,
+                        img: product.img,
+                        edition: product.edition,
+                        color: product.color,
+                        styleNo: product.styleNo,
+                        costPrice: product.costPrice,
+                        sellingPrice: product.sellingPrice,
+                        qty : 1
+                    }
+                    $rootScope.checkoutList.push(productObj);
+                    toaster.pop('info', "Information", "Item added to checkout!!");
+                }
+                else{
+                    var id = productExists[0].productID;
+                    $.each($rootScope.checkoutList, function() {
+                        if (this.productID === id) {
+                            this.qty = this.qty+1;
+                            toaster.pop('info', "Information", "Item Already Added!! Quantity Updated -->" + this.qty);
+                        }
+                    });
+                }
+
+                console.log(product);
             };
 
             ctrl.togglefav = function (product) {
@@ -41,7 +69,7 @@
 
             return {
                 templateUrl: "views/product/templates/productCard.html",
-                bindings: {data: '=', addtoCart: '&'},
+                bindings: {data: '='},
                 controller: productcardController,
             };
 
