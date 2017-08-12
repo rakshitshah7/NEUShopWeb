@@ -3,7 +3,7 @@ module.exports = function () {
     var productSchema = mongoose.Schema({
         productName: String,
         description: String,
-        img: [String],
+        img: String,
         edition: String,
         color:String,
         styleNo:String,
