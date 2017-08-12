@@ -69,6 +69,7 @@
                                     console.log("Successful");
                                     toaster.pop('info', "Gracis", "Successfully Ordered! :)");
                                     $rootScope.checkoutList = [];
+                                    vm.product =[];
                                 } else {
                                     console.log("Unsuccesful");
                                     toaster.pop('error', "Error", "Error in Ordering! Please Try Again");

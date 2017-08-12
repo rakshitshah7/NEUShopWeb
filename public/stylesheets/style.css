@@ -534,7 +534,7 @@ footer .glyphicon:hover {
   float: left;
   border-radius: 4px;
   width: 280px;
-  min-height: 430px;
+  min-height: 540px;
   background: #fff;
   padding: 23px;
   display: -webkit-box;
@@ -577,7 +577,8 @@ footer .glyphicon:hover {
   margin-bottom: 40px;
 }
 .middle img {
-  width: 100%;
+  width: 234px;
+  height: 234px;
 }
 .bottom {
   text-align: center;

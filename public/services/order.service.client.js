@@ -17,7 +17,8 @@
         }
 
         function cancelUserOrder(order) {
-            return $http.post("/api/project/cancelOrder", order);
+            var url = "/api/project/cancelOrder/" + order;
+            return $http.post(url);
         }
 
         function saveUserOrder(order) {

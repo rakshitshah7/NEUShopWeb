@@ -3,6 +3,7 @@ module.exports = function() {
     console.log("hello to order");
 
     var mongoose = require("mongoose");
+    var ObjectId = require('mongodb').ObjectID;
     var q = require("q");
 
     //Getting the schema
@@ -32,8 +33,8 @@ function createOrder(order){
         var orderdetails ={
             orderDateTime : order.orderDateTime,
             total : order.total,
-            user : order.user
-
+            user : order.user,
+            status : 1
         }
 
         createOrder(orderdetails)
@@ -48,9 +49,7 @@ function createOrder(order){
 
                             for (var i = 0; i < order.product.length; i++) {
 
-
-                                orderdetail.product.push(order.product[i]);
-                                orderdetail.qty.push(order.product[i].qty)
+                                orderdetail.product.push(JSON.stringify(order.product[i]));
 
                             }
                             orderdetail.save();
@@ -70,7 +69,7 @@ function createOrder(order){
                         deferred.abort(err);
                     } else
                         {
-                            deferred.resolve(order);
+                          deferred.resolve(order);
                         }
                })
     return deferred.promise;
@@ -80,13 +79,18 @@ function createOrder(order){
 
         var deferred = q.defer();
         Order
-            .remove({_id: orderId}, function (err, order) {
-            if(err) {
-                deferred.abort(err);
-            } else {
-                deferred.resolve(order);
-            }
-        });
+            .findById(orderId, function(err,orderdetail){
+                if(err) {
+
+                    deferred.abort(err);
+
+                } else {
+
+                   orderdetail.status = 0;
+                    orderdetail.save();
+                    deferred.resolve("Cancelled");
+                }
+            });
         return deferred.promise;
     }
 

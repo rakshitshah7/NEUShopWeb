@@ -4,8 +4,9 @@ module.exports = function () {
         orderDateTime: Date,
         total : String,
         qty : [String],
+        status : Boolean,
         user : {type: mongoose.Schema.Types.ObjectId, ref: 'ClientUser'},
-        product : [{type: mongoose.Schema.Types.ObjectId, ref: 'ProductUser'}]
+        product : [String]
     }, {collection: "order.user"});
 
     return orderSchema;

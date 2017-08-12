@@ -3,7 +3,7 @@
         .module("project")
         .config(configuration);
 
-    function configuration($routeProvider) {
+    function configuration($routeProvider, $mdThemingProvider) {
         $routeProvider
             .when("/home", {
                 templateUrl: 'views/homepage/templates/homepage.view.client.html',
@@ -91,6 +91,10 @@
                 }
             })
             .otherwise({redirectTo : '/home'});
+        $mdThemingProvider.theme('dark-red').backgroundPalette('red');
+        $mdThemingProvider.theme('dark-orange').backgroundPalette('orange').dark();
+        $mdThemingProvider.theme('dark-purple').backgroundPalette('deep-purple').dark();
+        $mdThemingProvider.theme('dark-blue').backgroundPalette('blue').dark();
     }
 
     function checkLoggedIn($q, $location, $rootScope, UserService) {
@@ -136,5 +140,7 @@
             );
 
     };
+
+
 
 })();
