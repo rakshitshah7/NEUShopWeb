@@ -70,7 +70,7 @@
                         for(var i =0;i<response.data.length;i++)
                         {
                             var productObj = {
-                                productID: response.data[i].productID,
+                                productID: response.data[i]._id,
                                 productName: response.data[i].productName,
                                 description: response.data[i].description,
                                 img: response.data[i].img,
