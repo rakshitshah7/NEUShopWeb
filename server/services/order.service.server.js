@@ -6,7 +6,7 @@ module.exports = function (app, models) {
 
     app.get('/api/project/userOrders', getUserOrders);
     app.post("/api/project/saveUserOrder",saveUserOrder);
-    app.post("/api/project/cancelOrder", cancelUserOrder);
+    app.post("/api/project/cancelOrder/:orderId", cancelUserOrder);
 
 
 

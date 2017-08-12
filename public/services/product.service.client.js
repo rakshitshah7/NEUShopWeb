@@ -20,8 +20,9 @@
             return $http.post("/api/project/saveProduct", product);
         }
 
-        function getProductById(id) {
-            return $http.post("/api/project/getProductById", id);
+        function getProductById(productId) {
+            var url = "/api/project/getProductById/" + productId;
+            return $http.post(url);
         }
 
     }
