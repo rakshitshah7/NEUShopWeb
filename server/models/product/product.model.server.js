@@ -26,7 +26,6 @@ module.exports = function() {
     }
 
     function getProductById(productId) {
-
         return Product.findById(productId);
     }
 
