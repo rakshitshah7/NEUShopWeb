@@ -14,13 +14,9 @@ module.exports = function() {
     var api = {
         getUserOrders : getUserOrders,
         cancelUserOrder : cancelUserOrder,
-        saveUserOrder: saveUserOrder,
-
-
-
+        saveUserOrder: saveUserOrder
     };
     return api;
-
 
 
 function createOrder(userId){
@@ -33,22 +29,21 @@ function createOrder(userId){
         var splitproduct = productId.split(",")
 
         var deferred = q.defer();
+
         createOrder(userId)
             .then(function (order) {
                 Order
                     .findById(order._id, function(err,order){
                         if(err) {
+
                             deferred.abort(err);
+
                         } else {
 
                             for (var i = 0; i < splitproduct.length; i++) {
-
                                 order.products.push(splitproduct[i]);
-
-
                             }
                             order.save();
-
                             deferred.resolve(order);
                         }
             })

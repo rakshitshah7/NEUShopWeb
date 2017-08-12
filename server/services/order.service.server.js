@@ -19,12 +19,7 @@ module.exports = function (app, models) {
             }, function (err) {
                     res.sendStatus(500).send(err);
                 });
-
-
     }
-    // userId "598cf6a039477539ed8d57d9"
-    // productId "598d102b766b4d3babe96da7" ,
-    // "598d102b766b4d3babe96da8"
 
     function cancelUserOrder(req,res){
         orderModelProject
@@ -45,9 +40,8 @@ module.exports = function (app, models) {
             .then(
                 function(product){
                     res.send(product);
-                },
-                function (error) {
-                    res.sendStatus(400).send(error);
+                }, function (err) {
+                    res.sendStatus(500).send(err);
                 }
             )}
 
